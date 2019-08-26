@@ -1,20 +1,14 @@
 package com.geekshow.shiro;
 
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.config.IniSecurityManagerFactory;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.Factory;
 
-/**
- * 完成用户认证功能
- * @author Administrator
- *
- */
-public class AuthenticationDemo {
+public class JdbcRealmDemo {
 
 	public static void main(String[] args) {
 		
@@ -28,7 +22,7 @@ public class AuthenticationDemo {
 		Subject subject = SecurityUtils.getSubject();
 		//5、假如登录的用户名zhangsan和1111，这个地方的zhangsan和1111表示用户登录时输入的信息
 		//而shiro.ini文件中的信息相当于数据库中存放的用户信息
-		UsernamePasswordToken token = new UsernamePasswordToken("zhang", "123");
+		UsernamePasswordToken token = new UsernamePasswordToken("zhangsan", "1111");
 		//6、进行用户身份验证
 		subject.login(token);
 		try {
@@ -38,14 +32,10 @@ public class AuthenticationDemo {
 				System.out.println("用户登录成功");
 			}
 			
-		} catch (UnknownAccountException e) {
-			
+		} catch (AuthenticationException e) {
+			e.printStackTrace();
 			System.out.println("用户名或密码错误");
 
-		}catch (IncorrectCredentialsException e) {
-			
-			System.out.println("用户名或密码错误");
 		}
-		
 	}
 }
