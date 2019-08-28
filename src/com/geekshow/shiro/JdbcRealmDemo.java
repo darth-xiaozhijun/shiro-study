@@ -22,7 +22,7 @@ public class JdbcRealmDemo {
 		Subject subject = SecurityUtils.getSubject();
 		//5、假如登录的用户名zhangsan和1111，这个地方的zhangsan和1111表示用户登录时输入的信息
 		//而shiro.ini文件中的信息相当于数据库中存放的用户信息
-		UsernamePasswordToken token = new UsernamePasswordToken("zhangsan", "1111");
+		UsernamePasswordToken token = new UsernamePasswordToken("lisi", "1111");
 		//6、进行用户身份验证
 		subject.login(token);
 		try {
